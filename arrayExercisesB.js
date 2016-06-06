@@ -182,18 +182,18 @@ var sumAvgPoints = averagePoints.reduce(function(sum, n) {
 console.log("Sum of Average Points: ", sumAvgPoints);
 
 // #7
-var pgs = players.filter(function(player) {
-  if (player.position === 'PG') {
+var starts = players.filter(function(player) {
+  if (player.starter === true) {
     return player;
   }
 });
-var pgAveragePoints = pgs.map(function(player) {
+var startAveragePoints = starts.map(function(player) {
   return player.avgPoints;
 });
-var sumPGPoints = pgAveragePoints.reduce(function(sum, n) {
+var sumStarterPoints = startAveragePoints.reduce(function(sum, n) {
   return sum + n;
 }, 0);
-console.log("Sum of Point Guard's Average Points: ", sumPGPoints);
+console.log("Sum of Starter's Average Points: ", sumStarterPoints);
 
 // #8
 var tenMinutes = players.every(function(player) {
@@ -211,3 +211,17 @@ var starterMinutes = start.every(function(player) {
   return player.avgMinutesPlayed > 30;
 });
 console.log("Do starters average at least 30 minutes a game?", starterMinutes);
+
+// #10
+var positions = players.map(function(player) {
+  return player.position;
+}).reduce(function(tally, position) {
+  if (!tally[position]) {
+    tally[position] = 1;
+  } else {
+    tally[position] += 1;
+  }
+  return tally;
+}, {});
+
+console.log(positions);
