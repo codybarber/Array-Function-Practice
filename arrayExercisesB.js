@@ -1,4 +1,28 @@
 //Leetspeak
+var string = "Hey everyone!  Insightpool is looking for a junior front end engineer to join the team.";
+var stringUpper = string.toUpperCase();
+var stringSplit = stringUpper.split('');
+var stringReplace = stringSplit.map(function(letter) {
+  if (letter === 'A') {
+    return '4';
+  } else if (letter === 'E') {
+    return '3';
+  } else if (letter === 'G') {
+    return '6';
+  } else if (letter === 'I') {
+    return '1';
+  } else if (letter === 'O') {
+    return '0';
+  } else if (letter === 'S') {
+    return '5';
+  } else if (letter === 'T') {
+    return '7';
+  } else {
+    return letter;
+  }
+});
+var leetString = stringReplace.join('');
+console.log(leetString);
 
 
 //Basketball Players
@@ -108,3 +132,82 @@ var players = [
     starter: false
   }
 ];
+// #1
+var starters = players.filter(function(player) {
+  return player.starter === true;
+});
+console.log("Starters: ", starters);
+
+// #2
+var pointGuards = players.filter(function(player) {
+  return player.position === 'PG';
+});
+console.log("Point Guards: ", pointGuards);
+
+// #3
+var names = players.map(function(player) {
+  return player.name;
+});
+console.log("Names: ", names);
+
+// #4
+var starters2 = players.filter(function(player) {
+  if (player.starter === true) {
+    return player;
+  }
+});
+var starterNames = starters2.map(function(player) {
+  return player.name;
+});
+console.log("Starter Names: ", starterNames);
+
+// #5
+var pointG = players.filter(function(player) {
+  if (player.position === 'PG') {
+    return player;
+  }
+});
+var pgNames = pointG.map(function(player) {
+  return player.name;
+});
+console.log("Point Guard Names: ", pgNames);
+
+// #6
+var averagePoints = players.map(function(player) {
+  return player.avgPoints;
+});
+var sumAvgPoints = averagePoints.reduce(function(sum, n) {
+  return sum + n;
+}, 0);
+console.log("Sum of Average Points: ", sumAvgPoints);
+
+// #7
+var pgs = players.filter(function(player) {
+  if (player.position === 'PG') {
+    return player;
+  }
+});
+var pgAveragePoints = pgs.map(function(player) {
+  return player.avgPoints;
+});
+var sumPGPoints = pgAveragePoints.reduce(function(sum, n) {
+  return sum + n;
+}, 0);
+console.log("Sum of Point Guard's Average Points: ", sumPGPoints);
+
+// #8
+var tenMinutes = players.every(function(player) {
+  return player.avgMinutesPlayed > 10;
+});
+console.log("Does every player play more than ten mintes a game? ", tenMinutes);
+
+// #9
+var start = players.filter(function(player) {
+  if (player.starter === true) {
+    return player;
+  }
+});
+var starterMinutes = start.every(function(player) {
+  return player.avgMinutesPlayed > 30;
+});
+console.log("Do starters average at least 30 minutes a game?", starterMinutes);
